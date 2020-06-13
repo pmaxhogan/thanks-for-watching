@@ -9,6 +9,7 @@
   "author": "programmer5000",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "fluent-ffmpeg": "^2.1.2"
   },
   "repository": {
