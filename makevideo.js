@@ -22,9 +22,12 @@ const meltIt = path => new Promise(resolve => {
     spawn('melt', [path]).on('close', () => resolve())
 });
 
-const combineClips = (introPath) => new Promise(resolve => {
+const combineClips = (introPath) => new Promise((resolve, reject) => {
     const outPath = getTmpFilePrefix() + '.mp4';
-    spawn('ffmpeg', ['-y', '-i', introPath, '-i', path.join(__dirname, 'assets', 'endscreen.mp4'), '-filter_complex', 'concat=n=2:v=1:a=1', outPath]).on('close', () => resolve(outPath));
+    spawn('ffmpeg', ['-y', '-i', introPath, '-i', path.join(__dirname, 'assets', 'endscreen.mp4'), '-filter_complex', 'concat=n=2:v=1:a=1', outPath]).on('close', (code) => {
+        if(code) return reject('Exited with code ' + code)
+        resolve(outPath)
+    }).stderr.on('data', data => console.log(`stderr: ${data}`));
 });
 
 const makeVideo = async text => {
