@@ -19,7 +19,7 @@ const writeMLTFile = async (title) => {
 };
 
 const meltIt = path => new Promise(resolve => {
-    spawn('melt', [path]).on('close', () => resolve())
+    spawn('melt', [path]).on('close', () => resolve()).stderr.on('data', data => console.log(`stderr: ${data}`))
 });
 
 const makeVideo = async text => {
