@@ -12,12 +12,14 @@ app.get("/video", async (req, res) => {
     }
 
     const text = req.query.text;
-    if(req.query.text in cacheMap){
+    if(text in cacheMap){
+        console.log("found in cache: " + text);
         return res.status(200).sendFile(cacheMap[text]);
     }
 
     const path = await makeVideo(text);
     res.status(200).sendFile(path);
+    console.log(path + ": " + text);
     cacheMap[text] = path;
 });
 
