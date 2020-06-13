@@ -3,3 +3,5 @@ ffmpeg
 libvpx-dev
 libvpx5
 libpulse0
+pulseaudio
+shotcut
