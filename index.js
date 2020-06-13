@@ -1,9 +1,19 @@
 const express = require('express');
 const app = express();
+const fs = require("fs/promises");
 
 const makeVideo = require("./makevideo.js");
 
 const cacheMap = Object.create(null);
+
+const exists = async () => {
+    try{
+        await fs.access(cacheMap[text]);
+        return true;
+    }catch(e){
+        return false;
+    }
+};
 
 // noinspection JSUnresolvedFunction
 app.get("/video", async (req, res) => {
@@ -12,7 +22,7 @@ app.get("/video", async (req, res) => {
     }
 
     const text = req.query.text;
-    if(text in cacheMap){
+    if(text in cacheMap && await exists(cacheMap[text])){
         console.log("found in cache: " + text);
         return res.status(200).sendFile(cacheMap[text]);
     }
