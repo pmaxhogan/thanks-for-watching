@@ -1,0 +1,22 @@
+{
+  "name": "thanks-for-watching",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "programmer5000",
+  "license": "MIT",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realprogrammer5000/thanks-for-watching.git"
+  },
+  "bugs": {
+    "url": "https://github.com/realprogrammer5000/thanks-for-watching/issues"
+  },
+  "homepage": "https://github.com/realprogrammer5000/thanks-for-watching#readme"
+}
