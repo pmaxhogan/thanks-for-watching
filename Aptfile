@@ -6,3 +6,5 @@ libpulse0
 pulseaudio
 shotcut
 libpulse
+libpulseaudio
+libpulse0:i386
