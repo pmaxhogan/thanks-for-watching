@@ -33,9 +33,7 @@ const meltIt = path => new Promise(resolve => {
 
 const combineClips = (introPath) => new Promise(resolve => {
     const outPath = getTmpFilePrefix() + ".mp4";
-    ffmpeg(introPath).input(path.join(__dirname, "assets", "endscreen.mp4")).on('end', () => resolve(outPath)).on('progress', function(progress) {
-        console.log('Processing: ' + progress.percent + '% done');
-    }).mergeToFile(outPath, os.tmpdir())
+    ffmpeg(introPath).input(path.join(__dirname, "assets", "endscreen.mp4")).on('end', () => resolve(outPath)).mergeToFile(outPath, os.tmpdir())
 });
 
 const makeVideo = async text => {
