@@ -14,4 +14,5 @@ WORKDIR /opt/code
 RUN adduser --disabled-password myuser
 USER myuser
 
+RUN NODE_ENV=production npm i
 CMD NODE_ENV=production BIND=0.0.0.0 node .
