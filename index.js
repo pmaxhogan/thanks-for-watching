@@ -16,6 +16,10 @@ const exists = async (file) => {
     }
 };
 
+app.get('/', function (req, res) {
+    res.status(200).end()
+});
+
 // noinspection JSUnresolvedFunction
 app.get("/video", async (req, res) => {
     if(!req.query.text || typeof req.query.text !== "string" || !req.query.text.length || req.query.text.length > 300){

@@ -12,6 +12,10 @@ WORKDIR /opt/code
 
 # Run the image as a non-root user
 RUN adduser --disabled-password myuser
+
+RUN chown myuser -R /opt/code
+RUN chmod -R 600 /opt/code
+
 USER myuser
 
 RUN NODE_ENV=production npm i
