@@ -33,6 +33,5 @@ app.get("/video", async (req, res) => {
     cacheMap[text] = path;
 });
 
-
 app.listen(process.env.PORT || 5000, process.env.BIND);
 
