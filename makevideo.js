@@ -19,7 +19,13 @@ const writeMLTFile = async (title) => {
 };
 
 const meltIt = path => new Promise(resolve => {
-    spawn('melt', [path]).on('close', () => resolve()).stderr.on('data', data => console.log(`stderr: ${data}`))
+    let command = "melt";
+    let args = [path];
+    if(process.env.NODE_ENV === "production"){
+        command = 'xvfb-run';
+        args = ['-a', 'melt'];
+    }
+    spawn(command, args).on('close', () => resolve()).stderr.on('data', data => console.log(`stderr: ${data}`))
 });
 
 const makeVideo = async text => {
