@@ -2,7 +2,7 @@
 FROM ubuntu:rolling
 
 RUN apt-get update
-RUN apt-get install -y ffmpeg melt curl xvfb
+RUN apt-get install -y ffmpeg melt curl xvfb ladspa-sdk swh-plugins
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 

@@ -5,7 +5,7 @@
  <producer title="Anonymous Submission" id="producer0" in="00:00:00.000" out="00:00:16.333">
   <property name="length">00:00:16.350</property>
   <property name="eof">pause</property>
-  <property name="resource">Jazz_In_Paris-trimmed.mp3</property>
+  <property name="resource">music.mp3</property>
   <property name="meta.media.nb_streams">1</property>
   <property name="meta.media.0.stream.type">audio</property>
   <property name="meta.media.0.codec.sample_fmt">fltp</property>

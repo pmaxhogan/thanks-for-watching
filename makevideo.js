@@ -23,9 +23,11 @@ const meltIt = path => new Promise(resolve => {
     let args = [path];
     if(process.env.NODE_ENV === "production"){
         command = 'xvfb-run';
-        args = ['-a', 'melt'];
+        args = ['-a', 'melt', path];
     }
-    spawn(command, args).on('close', () => resolve()).stderr.on('data', data => console.log(`stderr: ${data}`))
+    const proc = spawn(command, args).on('close', () => resolve());
+    proc.stderr.on('data', data => console.log(`stderr: ${data}`))
+    proc.stdout.on('data', data => console.log(`stdout: ${data}`))
 });
 
 const makeVideo = async text => {
