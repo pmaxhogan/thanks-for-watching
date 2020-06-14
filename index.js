@@ -6,12 +6,13 @@ const makeVideo = require("./makevideo.js");
 
 const cacheMap = Object.create(null);
 
-const exists = async () => {
+const exists = async (file) => {
     try{
-        await fs.access(cacheMap[text]);
+        await fs.access(file);
         return true;
     }catch(e){
-        return false;
+        if(e.code === "ERR_INVALID_ARG_TYPE") return false;
+        else throw e;
     }
 };
 
@@ -22,6 +23,7 @@ app.get("/video", async (req, res) => {
     }
 
     const text = req.query.text;
+    console.log(text in cacheMap, cacheMap[text], await exists(cacheMap[text]))
     if(text in cacheMap && await exists(cacheMap[text])){
         console.log("found in cache: " + text);
         return res.status(200).sendFile(cacheMap[text]);
@@ -31,6 +33,7 @@ app.get("/video", async (req, res) => {
     res.status(200).sendFile(path);
     console.log(path + ": " + text);
     cacheMap[text] = path;
+    console.log(cacheMap);
 });
 
 app.listen(process.env.PORT || 5000, process.env.BIND);

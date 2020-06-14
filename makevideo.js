@@ -1,4 +1,5 @@
 const { spawn } = require('child_process');
+const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs/promises');
 const os = require('os');
 const path = require('path');
@@ -26,16 +27,28 @@ const meltIt = path => new Promise(resolve => {
         args = ['-a', 'melt', path];
     }
     const proc = spawn(command, args).on('close', () => resolve());
-    proc.stderr.on('data', data => console.log(`stderr: ${data}`))
-    proc.stdout.on('data', data => console.log(`stdout: ${data}`))
+    // proc.stderr.on('data', data => console.log(`stderr: ${data}`));
+    // proc.stdout.on('data', data => console.log(`stdout: ${data}`))
+});
+
+const combineClips = (introPath) => new Promise(resolve => {
+    const outPath = getTmpFilePrefix() + ".mp4";
+    ffmpeg(introPath).input(path.join(__dirname, "assets", "endscreen.mp4")).on('end', () => resolve(outPath)).on('progress', function(progress) {
+        console.log('Processing: ' + progress.percent + '% done');
+    }).mergeToFile(outPath, os.tmpdir())
 });
 
 const makeVideo = async text => {
-    console.log('writing mlt file');
+    console.log("writing mlt file");
     const {mltFilePath, renderedVideoPath} = await writeMLTFile(text);
-    console.log('melting');
+    console.log("melting");
     await meltIt(mltFilePath);
-    return renderedVideoPath;
+    await fs.unlink(mltFilePath);
+    console.log("combining");
+    const outPath = await combineClips(renderedVideoPath);
+    console.log("unlinking");
+    await fs.unlink(renderedVideoPath);
+    return outPath;
 };
 
 module.exports = makeVideo;

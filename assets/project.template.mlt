@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mlt title="Anonymous Submission" LC_NUMERIC="en_US.UTF-8" producer="main_bin" version="6.20.0" root="{basePath}">
  <profile frame_rate_num="30" sample_aspect_num="1" display_aspect_den="9" colorspace="709" progressive="1" description="HD 1080p 30 fps" display_aspect_num="16" frame_rate_den="1" width="1920" height="1080" sample_aspect_den="1"/>
- <consumer f="mp4" g="15" crf="23" progressive="1" target="{outFile}" threads="16" real_time="-1" mlt_service="avformat" vcodec="libx264" ab="160k" movflags="+faststart" bf="2" preset="faster" glsl.="1" acodec="aac" in="0" out="490"/>
+ <consumer f="mp4" g="15" crf="23" progressive="1" target="{outFile}" threads="16" real_time="-1" mlt_service="avformat" vcodec="libx264" ab="160k" movflags="+faststart" bf="2" preset="faster" glsl.="1" acodec="aac" in="0" out="232"/>
  <producer title="Anonymous Submission" id="producer0" in="00:00:00.000" out="00:00:16.333">
   <property name="length">00:00:16.350</property>
   <property name="eof">pause</property>
@@ -57,7 +57,7 @@
   <property name="xmldata">&lt;kdenlivetitle duration="300" LC_NUMERIC="en_US.UTF-8" width="1920" height="1080" out="299">
  &lt;startviewport rect="0,0,1920,1080"/>
  &lt;endviewport rect="0,0,1920,1080"/>
- &lt;background color="0,255,255,255"/>
+ &lt;background color="0,216,255,255"/>
 &lt;/kdenlivetitle>
 </property>
   <property name="force_reload">0</property>
