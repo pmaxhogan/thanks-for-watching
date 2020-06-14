@@ -14,7 +14,7 @@ WORKDIR /opt/code
 RUN adduser --disabled-password myuser
 
 RUN chown myuser -R /opt/code
-RUN chmod -R 600 /opt/code
+RUN chmod -R a+rX /opt/code
 
 USER myuser
 
