@@ -27,7 +27,7 @@ app.get("/video", async (req, res) => {
     }
 
     const text = req.query.text;
-    console.log(text in cacheMap, cacheMap[text], await exists(cacheMap[text]))
+    console.log("processing: " + text)
     if(text in cacheMap && await exists(cacheMap[text])){
         console.log("found in cache: " + text);
         return res.status(200).sendFile(cacheMap[text]);
@@ -37,7 +37,6 @@ app.get("/video", async (req, res) => {
     res.status(200).sendFile(path);
     console.log(path + ": " + text);
     cacheMap[text] = path;
-    console.log(cacheMap);
 });
 
 app.listen(process.env.PORT || 5000, process.env.BIND);
